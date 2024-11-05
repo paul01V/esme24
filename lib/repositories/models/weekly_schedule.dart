@@ -15,4 +15,4 @@ class WeeklySchedule {
   List<DailySchedule> dailySchedules;
 
   WeeklySchedule({required this.dailySchedules});
-}·
+}
