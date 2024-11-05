@@ -58,10 +58,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  late List<Location>? locations;
+  List<Location>? location =  [];
 
   void _incrementCounter() {
-    locations = LocationUseCase().getLocation();
+    location = LocationUseCase().getLocation();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
