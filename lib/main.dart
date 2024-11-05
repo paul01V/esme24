@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swipezone/domains/locations_usecase.dart';
+import 'package:swipezone/repositories/models/location.dart';
 
 void main() {
   runApp(const MyApp());
@@ -56,8 +58,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
+  late List<Location>? locations;
 
   void _incrementCounter() {
+    locations = LocationUseCase().getLocation();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -105,6 +109,9 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
+            if(locations != null) Text(
+                'Name Location=${locations!.first.nom}',
+              ),
             const Text(
               'You have pushed the button this many times:',
             ),
