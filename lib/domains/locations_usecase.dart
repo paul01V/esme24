@@ -3,6 +3,6 @@ import 'package:swipezone/repositories/models/location.dart';
 
 class LocationUseCase {
   Future<List<Location>> getLocation() async {
-    return Future.delayed(const Duration(seconds: 1)).then((_) =>ILocationRepository().getLocations() );
+    return ILocationRepository().getLocations();
   }
 }

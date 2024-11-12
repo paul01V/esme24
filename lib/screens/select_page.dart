@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import 'package:swipezone/domains/location_manager.dart';
+import 'package:swipezone/repositories/models/location.dart';
 
 class SelectPage extends StatefulWidget {
   final String title;
@@ -10,6 +12,21 @@ class SelectPage extends StatefulWidget {
 }
 
 class _SelectPageState extends State<SelectPage> {
+  List<Location> plans = [];
+
+  @override
+  void initState() {
+    super.initState();
+    _loadPlans();
+  }
+
+  Future<void> _loadPlans() async {
+    List<Location> fetchedPlans = LocationManager().wantedLocations;
+    setState(() {
+      plans = fetchedPlans;
+    });
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -17,7 +34,14 @@ class _SelectPageState extends State<SelectPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(child: Text(widget.title)),
+      body: ListView.builder(
+        itemCount: plans.length,
+        itemBuilder: (context, index) {
+          return ListTile(
+            title: Text(plans[index].nom),
+          );
+        },
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Add plan',

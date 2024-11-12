@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swipezone/domains/location_manager.dart';
 import 'package:swipezone/domains/locations_usecase.dart';
 import 'package:swipezone/screens/widgets/location_card.dart';
 
@@ -28,20 +29,38 @@ class _HomePageState extends State<HomePage> {
             if (data == null || data.isEmpty) {
               return const Text("No data");
             }
+
+            LocationManager().locations = data;
+
             return ListView(children: [
-              LocationCard(location: data[0]),
+              LocationCard(location: data[LocationManager().currentIndex]),
               Center(
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          LocationManager().Idontwant();
+                        });
+                      },
                       child: const Text("Nope"),
                     ),
                     ElevatedButton(
-                      onPressed: () {},
+                      onPressed: () {
+                        setState(() {
+                          LocationManager().Iwant();
+                        });
+                      },
                       child: const Text("Yep"),
                     ),
+                    Text(
+                        "Don't like: ${LocationManager().unwantedLocations.length}",
+                        style:
+                            const TextStyle(color: Colors.red, fontSize: 20)),
+                    Text("Like: ${LocationManager().wantedLocations.length}",
+                        style:
+                            const TextStyle(color: Colors.green, fontSize: 20)),
                   ],
                 ),
               ),
