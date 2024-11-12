@@ -1,7 +1,6 @@
-import 'dart:ffi';
-
-class Localization{
+class Localization {
   String? adress;
-  Long? lat;
-  Long? long;
+  double? lat;
+  double? lng;
+  Localization(this.adress, this.lat, this.lng);
 }

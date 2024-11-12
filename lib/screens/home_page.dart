@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:swipezone/domains/locations_usecase.dart';
+import 'package:swipezone/screens/widgets/location_card.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -18,12 +20,19 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(
-        child: FilledButton(
-            onPressed: () {
-              GoRouter.of(context).go("/planningpage");
-            }, 
-            child: const Text("Go to Select Page")),
+      body: FutureBuilder(
+        future: LocationUseCase().getLocation(),
+        builder: (context, snapshot) {
+          if (snapshot.connectionState == ConnectionState.done) {
+            var data = snapshot.data;
+            if (data == null || data.isEmpty) {
+              return const Text("No data");
+            }
+            return ListView(children: [LocationCard(location: data[0])]);
+          } else {
+            return const CircularProgressIndicator();
+          }
+        },
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},

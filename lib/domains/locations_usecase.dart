@@ -1,11 +1,8 @@
 import 'package:swipezone/repositories/location_repository_implementation.dart';
 import 'package:swipezone/repositories/models/location.dart';
 
-class LocationUseCase{
-
-  List<Location> getLocation(){
-
-    return ILocationRepository().getLocations();
-
+class LocationUseCase {
+  Future<List<Location>> getLocation() async {
+    return Future.delayed(const Duration(seconds: 5)).then((_) =>ILocationRepository().getLocations() );
   }
 }
