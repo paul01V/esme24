@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class PlanningPage extends StatefulWidget {
   final String title;
@@ -17,12 +18,9 @@ class _PlanningPageState extends State<PlanningPage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(child: Text(widget.title)),
-      floatingActionButton: FloatingActionButton(
-        onPressed: () {},
-        tooltip: 'Add plan',
-        child: const Icon(Icons.add),
-      ),
+      body: Center(child: FilledButton(onPressed: (){
+        GoRouter.of(context).go("/selectpage");
+      }, child: Text(widget.title))),
     );
   }
 }

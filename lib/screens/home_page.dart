@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:go_router/go_router.dart';
 
 class HomePage extends StatefulWidget {
   final String title;
@@ -17,7 +18,13 @@ class _HomePageState extends State<HomePage> {
         backgroundColor: Theme.of(context).colorScheme.inversePrimary,
         title: Text(widget.title),
       ),
-      body: Center(child: Text(widget.title)),
+      body: Center(
+        child: FilledButton(
+            onPressed: () {
+              GoRouter.of(context).go("/planningpage");
+            }, 
+            child: const Text("Go to Select Page")),
+      ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
         tooltip: 'Add plan',
