@@ -28,7 +28,31 @@ class _HomePageState extends State<HomePage> {
             if (data == null || data.isEmpty) {
               return const Text("No data");
             }
-            return ListView(children: [LocationCard(location: data[0])]);
+            return ListView(children: [
+              LocationCard(location: data[0]),
+              Center(
+                child: Row(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("Nope"),
+                    ),
+                    ElevatedButton(
+                      onPressed: () {},
+                      child: const Text("Yep"),
+                    ),
+                  ],
+                ),
+              ),
+              Center(
+                child: FilledButton(
+                    onPressed: () {
+                      GoRouter.of(context).go('/selectpage');
+                    },
+                    child: const Text("Create plan")),
+              )
+            ]);
           } else {
             return const CircularProgressIndicator();
           }
