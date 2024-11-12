@@ -33,7 +33,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: const MyHomePage(title: 'Flutter Demo Home Page'),
+      home: MyHomePage(title: 'Flutter Demo Home Page'),
     );
   }
 }
@@ -58,10 +58,10 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   int _counter = 0;
-  List<Location>? location =  [];
+  List<Location>? _location =  [];
 
   void _incrementCounter() {
-    location = LocationUseCase().getLocation();
+    _location = LocationUseCase().getLocation();
     setState(() {
       // This call to setState tells the Flutter framework that something has
       // changed in this State, which causes it to rerun the build method below
@@ -109,8 +109,8 @@ class _MyHomePageState extends State<MyHomePage> {
           // wireframe for each widget.
           mainAxisAlignment: MainAxisAlignment.center,
           children: <Widget>[
-            if(locations != null) Text(
-                'Name Location=${locations!.first.nom}',
+            if(location != null) Text(
+                'Name Location=${location!.first.nom}',
               ),
             const Text(
               'You have pushed the button this many times:',
