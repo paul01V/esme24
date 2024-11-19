@@ -38,7 +38,16 @@ class _SelectPageState extends State<SelectPage> {
         itemCount: plans.length,
         itemBuilder: (context, index) {
           return ListTile(
+            leading: Image.network(plans[index].photoUrl!,
+                width: 30, height: 30, fit: BoxFit.cover),
             title: Text(plans[index].nom),
+            subtitle: const ListTile(
+                trailing: Icon(
+                  Icons.circle_rounded,
+                  color: Color(0xFFAFED05),
+                ),
+                title: Text("OPEN")),
+            trailing: Checkbox(value: false, onChanged: (isSelect) {}),
           );
         },
       ),
