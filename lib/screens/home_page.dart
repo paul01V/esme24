@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:go_router/go_router.dart';
+import 'package:isar/isar.dart';
+import 'package:path_provider/path_provider.dart';
 import 'package:swipezone/domains/location_manager.dart';
 import 'package:swipezone/domains/locations_usecase.dart';
 import 'package:swipezone/screens/widgets/location_card.dart';
@@ -14,6 +16,19 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  @override
+  void initState() {
+    super.initState();
+  }
+
+  void createDatabase() async {
+    final dir = await getApplicationDocumentsDirectory();
+    final isar = await Isar.open(
+      [LocationSchema],
+      directory: dir.path,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
