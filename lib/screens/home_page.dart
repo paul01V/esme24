@@ -22,11 +22,7 @@ class _HomePageState extends State<HomePage> {
   }
 
   void createDatabase() async {
-    final dir = await getApplicationDocumentsDirectory();
-    final isar = await Isar.open(
-      [LocationSchema],
-      directory: dir.path,
-    );
+
   }
 
   @override

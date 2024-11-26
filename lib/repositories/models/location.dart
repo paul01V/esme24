@@ -6,7 +6,6 @@ import 'categories.dart';
 import 'contact.dart';
 import 'localization.dart';
 
-part 'location.g.dart';
 
 @collection
 class Location {
