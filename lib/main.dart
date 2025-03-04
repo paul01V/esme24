@@ -3,6 +3,9 @@ import 'package:go_router/go_router.dart';
 import 'package:swipezone/screens/home_page.dart';
 import 'package:swipezone/screens/planning_page.dart';
 import 'package:swipezone/screens/select_page.dart';
+import 'package:swipezone/screens/map_page.dart';
+import 'package:swipezone/screens/nfc_page.dart';
+import 'package:swipezone/repositories/models/location.dart';
 
 void main() {
   runApp(
@@ -38,7 +41,21 @@ final GoRouter _router = GoRouter(
             );
           },
         ),
+        GoRoute(
+          path: 'nfcscan',
+          builder: (BuildContext context, GoRouterState state) {
+            return NFCScanPage();
+          },
+        ),
+        GoRoute(
+          path: 'mappage',
+          builder: (BuildContext context, GoRouterState state) {
+            List<Location> selectedLocations = state.extra as List<Location>;
+            return MapPage(selectedLocations: selectedLocations);
+          },
+        ),
       ],
     ),
   ],
 );
+

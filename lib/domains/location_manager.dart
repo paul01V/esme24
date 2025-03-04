@@ -16,8 +16,7 @@ class LocationManager {
   int currentIndex = 0;
 
   void Iwant() {
-    filters[locations[currentIndex]] = false;
-
+    filters[locations[currentIndex]] = true;  // Changed to true
     next();
   }
 
@@ -27,8 +26,17 @@ class LocationManager {
   }
 
   void next() {
-    if (currentIndex != locations.length - 1) {
+    if (currentIndex < locations.length - 1) {
       currentIndex++;
     }
   }
+
+  void reset() {
+    currentIndex = 0;
+    unwantedLocations.clear();
+    filters.clear();
+  }
+
+  bool get isFinished => currentIndex >= locations.length - 1;
 }
+

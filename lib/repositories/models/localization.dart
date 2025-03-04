@@ -2,8 +2,9 @@ import 'package:isar/isar.dart';
 
 @embedded
 class Localization {
-  String? adress;
-  double? lat;
-  double? lng;
-  Localization(this.adress, this.lat, this.lng);
+  final String adress;
+  final double latitude;
+  final double longitude;
+
+  Localization(this.adress, this.latitude, this.longitude);
 }
